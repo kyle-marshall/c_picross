@@ -69,7 +69,7 @@ pic_board* rand_pic_board(int w, int h){
   pic_board* result = new_pic_board(w, h);
   c = w * h;
   for(i=0;i<c;i++)
-    result->cell_values[i] = rand() % 2;
+    result->cell_values[i] = (rand() % 3 != 0);
   gen_clues(result);
   return result;
 }
