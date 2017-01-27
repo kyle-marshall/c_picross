@@ -50,5 +50,6 @@ int main(int argc, char** argv){
     }
     
     print_pic_board(board);
-  } while(!quit);
+  } while(!quit && !check_win(board));
+  printf("YOU WIN!!!!\n");
 }

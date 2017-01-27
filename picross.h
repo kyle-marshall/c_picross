@@ -16,5 +16,6 @@ void print_pic_board(pic_board*);
 int alpha_to_int_index(char* alpha);
 char* get_cell_value(pic_board* b, int r, int c);
 char* get_cell_mark(pic_board* b, int r, int c);
+int check_win(pic_board* b);
 
 #endif

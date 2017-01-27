@@ -21,6 +21,25 @@ typedef struct pic_board_st
 /* PROTOTYPES */
 static void gen_clues(pic_board* board);
 
+int check_win(pic_board* board){
+  int i, max;
+  char* vals;
+  char* marks;
+  vals = board->cell_values;
+  marks = board->cell_marks;
+  max = board->w * board->h;
+  for(i=0;i<max;i++){
+
+    if(vals[i] == CELL_FILLED &&
+       marks[i] != MARK_FILLED)
+      return 0;
+    else if(vals[i] == CELL_EMPTY &&
+	    marks[i] == MARK_FILLED)
+      return 0;
+  }
+  return 1;
+}
+
 /* HELPERS */
 /* maximum horizontal clues = ceiling of the width / 2 */
 static int max_h_clues(int w){
