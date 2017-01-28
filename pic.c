@@ -4,6 +4,22 @@
 #include <string.h>
 #include "picross.h"
 
+
+int a_validate(char* a){
+  int i, len;
+  char dif = 'a' - 'A';
+  len = strlen(a);
+  for(i=0;i<len;i++){
+    if(a[i] >= 'a' && a[i] <= 'z'){
+      a[i] = a[i] - dif;
+    }
+    else if(a[i] < 'A' || a[i] > 'Z'){
+      return 0;
+    }
+  }
+  return 1;
+}
+
 int main(int argc, char** argv){
   pic_board* board;
   int w, h;
@@ -16,7 +32,7 @@ int main(int argc, char** argv){
     w = atoi(argv[1]);
     h = atoi(argv[2]);
     if(w == 0 || h == 0){
-      printf("error: invalid dims\n");
+      printf("Error: Invalid dims.\n");
     }
   }
   else{
@@ -33,6 +49,12 @@ int main(int argc, char** argv){
       quit = 1;
       break;
     }
+
+    if(!a_validate(a_buf)){
+      printf("Invalid coordinate! (Enter 'quit' followed by something else to quit.)\n");
+      continue;
+    }
+    
     col = alpha_to_int_index(a_buf);
     row--;
     printf("row=%d, col=%d\n", row, col);
@@ -51,5 +73,5 @@ int main(int argc, char** argv){
     
     print_pic_board(board);
   } while(!quit && !check_win(board));
-  printf("YOU WIN!!!!\n");
+  printf("YOU WIN!\n");
 }

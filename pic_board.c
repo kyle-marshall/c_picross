@@ -29,7 +29,6 @@ int check_win(pic_board* board){
   marks = board->cell_marks;
   max = board->w * board->h;
   for(i=0;i<max;i++){
-
     if(vals[i] == CELL_FILLED &&
        marks[i] != MARK_FILLED)
       return 0;
